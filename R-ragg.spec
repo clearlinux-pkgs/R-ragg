@@ -4,7 +4,7 @@
 #
 Name     : R-ragg
 Version  : 1.2.0
-Release  : 14
+Release  : 15
 URL      : https://cran.r-project.org/src/contrib/ragg_1.2.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/ragg_1.2.0.tar.gz
 Summary  : Graphic Devices Based on AGG
