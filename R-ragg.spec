@@ -4,7 +4,7 @@
 #
 Name     : R-ragg
 Version  : 1.2.1
-Release  : 18
+Release  : 19
 URL      : https://cran.r-project.org/src/contrib/ragg_1.2.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/ragg_1.2.1.tar.gz
 Summary  : Graphic Devices Based on AGG
@@ -43,10 +43,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1638828404
+export SOURCE_DATE_EPOCH=1641085512
 
 %install
-export SOURCE_DATE_EPOCH=1638828404
+export SOURCE_DATE_EPOCH=1641085512
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -128,3 +128,5 @@ R CMD check --no-manual --no-examples --no-codoc ragg || :
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/R/library/ragg/libs/ragg.so
+/usr/lib64/R/library/ragg/libs/ragg.so.avx2
+/usr/lib64/R/library/ragg/libs/ragg.so.avx512
