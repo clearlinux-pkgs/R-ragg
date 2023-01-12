@@ -1,2 +1,2 @@
-1.2.4
-libjpeg-turbo-dev
+1.2.5
+pkgconfig(libjpeg)
