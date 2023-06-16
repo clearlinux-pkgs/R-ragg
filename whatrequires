@@ -1,2 +1,5 @@
 # This file contains recursive sources that require this package
+R-flextable
+R-officer
 R-pkgdown
+R-tidyverse
