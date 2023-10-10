@@ -4,10 +4,10 @@
 # Using build pattern: R
 #
 Name     : R-ragg
-Version  : 1.2.5
-Release  : 32
-URL      : https://cran.r-project.org/src/contrib/ragg_1.2.5.tar.gz
-Source0  : https://cran.r-project.org/src/contrib/ragg_1.2.5.tar.gz
+Version  : 1.2.6
+Release  : 33
+URL      : https://cran.r-project.org/src/contrib/ragg_1.2.6.tar.gz
+Source0  : https://cran.r-project.org/src/contrib/ragg_1.2.6.tar.gz
 Summary  : Graphic Devices Based on AGG
 Group    : Development/Tools
 License  : BSD-3-Clause MIT
@@ -20,7 +20,6 @@ BuildRequires : R-textshaping
 BuildRequires : buildreq-R
 BuildRequires : freetype-dev
 BuildRequires : libpng-dev
-BuildRequires : pkgconfig(libjpeg)
 BuildRequires : tiff-dev
 # Suppress stripping binaries
 %define __strip /bin/true
@@ -50,27 +49,30 @@ license components for the R-ragg package.
 
 %prep
 %setup -q -n ragg
+pushd ..
+cp -a ragg buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686934981
+export SOURCE_DATE_EPOCH=1696953412
 
 %install
-export SOURCE_DATE_EPOCH=1686934981
+export SOURCE_DATE_EPOCH=1696953412
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/R-ragg
 cp %{_builddir}/ragg/LICENSE.note %{buildroot}/usr/share/package-licenses/R-ragg/f380abc818bba52261ccd91e10e0d73b5def4aae || :
-export LANG=C.UTF-8
-export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
+LANG=C.UTF-8
+CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -O3 -flto -fno-semantic-interposition "
+FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -O3 -flto -fno-semantic-interposition "
+FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -O3 -flto -fno-semantic-interposition "
+CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -O3 -flto -fno-semantic-interposition "
+AR=gcc-ar
+RANLIB=gcc-ranlib
+LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
 
 mkdir -p ~/.R
@@ -99,6 +101,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc . || :
 
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
