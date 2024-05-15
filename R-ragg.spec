@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : R-ragg
-Version  : 1.3.1
-Release  : 38
-URL      : https://cran.r-project.org/src/contrib/ragg_1.3.1.tar.gz
-Source0  : https://cran.r-project.org/src/contrib/ragg_1.3.1.tar.gz
+Version  : 1.3.2
+Release  : 39
+URL      : https://cran.r-project.org/src/contrib/ragg_1.3.2.tar.gz
+Source0  : https://cran.r-project.org/src/contrib/ragg_1.3.2.tar.gz
 Summary  : Graphic Devices Based on AGG
 Group    : Development/Tools
 License  : BSD-3-Clause MIT
@@ -63,10 +63,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1715021215
+export SOURCE_DATE_EPOCH=1715788063
 
 %install
-export SOURCE_DATE_EPOCH=1715021215
+export SOURCE_DATE_EPOCH=1715788063
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/R-ragg
 cp %{_builddir}/ragg/LICENSE.note %{buildroot}/usr/share/package-licenses/R-ragg/f380abc818bba52261ccd91e10e0d73b5def4aae || :
